@@ -7,23 +7,25 @@
     <link rel="icon" type="image/png" href="" sizes="32x32">
   </head>
   <body ng-controller="ScheduleViewController" style="padding:0px;">
+    <div ng-cloak>
 
-    <h1 class="h1">Today's Session</h1>
+      <h1 class="h1">Today's Session</h1>
 
-    <h2 class="h2">{{schedule.year}}/{{schedule.month}}/{{schedule.date}}</h2>
+      <h2 class="h2">{{schedule.year}}/{{schedule.month}}/{{schedule.date}}</h2>
 
-    <table class="table table-responsive">
-      <tr ng-repeat="sched in schedule.schedule">
-	<td>
-	  <div>
-	    <a href="{{sched.url}}" target="_blank">{{sched.name}}</a>
-	  </div>
-	  <div>
-	    {{sched.data}}
-	  </div>
-	</td>
-      </tr>
-    </table>
+      <table class="table table-responsive">
+	<tr ng-repeat="sched in schedule.schedule">
+	  <td>
+	    <div>
+	      <a href="{{sched.url}}" target="_blank">{{sched.name}}</a>
+	    </div>
+	    <div>
+	      {{sched.data}}
+	    </div>
+	  </td>
+	</tr>
+      </table>
+    </div>
 
     <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
