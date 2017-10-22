@@ -1,0 +1,16 @@
+{
+    "apps" : [
+	{
+	    "name"        : "jazz-calencar",
+	    "script"      : "./bin/www",
+	    "watch"       : true,
+	    "env": {
+		"NODE_ENV": "development"
+	    },
+	    "env_production" : {
+		"NODE_ENV": "production",
+		"PORT": 50000
+	    }
+	}
+    ]
+}

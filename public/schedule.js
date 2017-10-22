@@ -12,7 +12,7 @@
 	const date = now.get('date');
 	$http({
             method : 'GET',
-            url : `/schedule/today`
+            url : `${config.CONTEXT_PATH}/schedule/today`
         }).success(function(data, status, headers, config) {
             $scope.schedule = data;
             console.log(data);

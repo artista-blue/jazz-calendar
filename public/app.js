@@ -3,7 +3,7 @@ let app, Controllers;
 (function () {
 
     "use strict";
-    
+
     app = angular.module('app', [
 	'ngRoute',
 	'ngResource',
@@ -33,6 +33,6 @@ let app, Controllers;
 	    $scope.eventType = type;
 	    $location.path('/events');
 	};
-}
-    
+    }
+
 })();
