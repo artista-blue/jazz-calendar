@@ -1,30 +1,43 @@
 <html ng-app="app">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="icon" type="image/png" href="" sizes="32x32">
   </head>
   <body ng-controller="ScheduleViewController" style="padding:0px;">
-    <div ng-cloak>
+    <div id="container" ng-cloak>
 
-      <h1 class="h1">Today's Session</h1>
+      <div id="header">
+	<h1 class="h1">Today's Session</h1>
+      </div>
 
-      <h2 class="h2">{{schedule.year}}/{{schedule.month}}/{{schedule.date}}</h2>
+      <div id="contents">
 
-      <table class="table table-responsive">
-	<tr ng-repeat="sched in schedule.schedule">
-	  <td>
-	    <div>
-	      <a href="{{sched.url}}" target="_blank">{{sched.name}}</a>
-	    </div>
-	    <div>
-	      {{sched.data}}
-	    </div>
-	  </td>
-	</tr>
-      </table>
+	<div style="margin:10px;">
+	  Date: <input type="date" ng-model="cal">
+	</div>
+	
+	<table class="table table-responsive">
+	  <tr ng-repeat="sched in schedule.schedule">
+	    <td>
+	      <div>
+		<a href="{{sched.url}}" target="_blank">{{sched.name}}</a>
+	      </div>
+	      <div>
+		{{sched.data}}
+	      </div>
+	    </td>
+	  </tr>
+	</table>
+      </div>
+    </div>
+
+    <div id="footer">
+      <p align="center">Artista Inc. <a href="http://www.artista.blue">http://www.artista.blue</a></p>
     </div>
 
     <script src="bower_components/moment/min/moment-with-locales.min.js"></script>

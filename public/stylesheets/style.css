@@ -3,6 +3,41 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+
+body , html {
+    height: 100%;
+}
+ 
+#container {
+    width: 100%;
+    position: relative;
+    height: auto !important;
+    height: 100%;
+    min-height: 100%;
+}
+
+#header {
+    margin: 0px;
+    padding: 5px;
+    width: 100%;
+    color: white;
+
+    background-color: #5882FA;
+}
+ 
+#contents {
+    padding-bottom: 100px;
+}
+ 
+#footer {
+    background-color: #5882FA;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    color: white;
+}
+
 a {
   color: #00B7FF;
 }
