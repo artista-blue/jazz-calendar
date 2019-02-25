@@ -10,5 +10,9 @@
     "somethin_jazz_club": {
 	"name": "SOMETHIN' Jazz Club",
 	"url": "http://www.somethinjazz.com/jp/index.html"
+    },
+    "jammin": {
+	"name": "Jammin'",
+	"url": "http://www.jammin-meguro.sakura.ne.jp/index.htm"
     }
 }
