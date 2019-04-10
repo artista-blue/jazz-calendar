@@ -45,12 +45,14 @@ class ESAnalyzer:
         cv.waitKey(0)
         cv.destroyAllWindows()
 
-    def find_contours(self):
+    def find_contours(self, width=None, err=0.10):
         _contours, hierarchy = cv.findContours(self.img, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
         contours = []
+        l_limit = width - width * err
+        h_limit = width + width * err
         for c in _contours:
             x, y, w, h = cv.boundingRect(c)
-            if w < 400 or w > 2000:
+            if w < l_limit or w > h_limit:
                 continue
             print(x, y, w, h)
             contours.append(c)
@@ -62,6 +64,7 @@ class ESAnalyzer:
             x, y, w, h = cv.boundingRect(c)
             print(x, y, w, h)
             tmp_img = self.img[y:y+h, x:x+w]
+            self.show(img=tmp_img)
             string = pytesseract.image_to_string(tmp_img, lang='jpn')
             print(string)
 
@@ -82,12 +85,14 @@ class ESAnalyzer:
         self.resize()
         self.to_gray()
         self.to_binary()
-        contours = self.find_contours()
+        contours = self.find_contours(width=1320)
         self.analyze_contours(contours)
         self.show()
 
-    def show(self):
-        cv.imshow("result", self.img)
+    def show(self, text="result", img=None):
+        if img is None:
+            img = self.img
+        cv.imshow(text, img)
         cv.waitKey(0)
         cv.destroyAllWindows()
 
