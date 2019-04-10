@@ -19,10 +19,15 @@ class ESAnalyzer:
         return cv.imread(self.img_path)
 
     def resize(self, img, w=1, h=1):
-        height, width, _ = img.shape
-        height = height * h
-        width = width * w
-        return cv.resize(img, (height, width))
+        print(img.shape)
+        try:
+            height, width, _ = img.shape
+        except:
+            height, width = img.shape
+
+        height = int(height * h)
+        width = int(width * w)
+        return cv.resize(img, (width, height))
 
     def to_gray(self, img):
         return cv.cvtColor(img, cv.COLOR_RGB2GRAY)
@@ -84,6 +89,9 @@ class ESAnalyzer:
             x, y, w, h = cv.boundingRect(c)
             print(x, y, w, h)
             tmp_img = img[y:y+h, x:x+w]
+            if 262 * 0.8 < h and h < 262 * 1.2:
+                print("!!!!!!!!!!!!!!!!")
+                tmp_img = self.resize(tmp_img, w=1.7, h=1)
             self.show(img=tmp_img)
             string = self.img2string(tmp_img)
             item_list.append((x, y, w, h, string))
@@ -117,7 +125,7 @@ class ESAnalyzer:
                 continue
             return string
         return None
-                
+
     def detect_date(self, item_list):
         schedule = []
         for item in item_list:
@@ -136,10 +144,11 @@ class ESAnalyzer:
 
     def execute(self):
         img = self.pdf2img()
-        img = self.resize(img, w=3, h=3)
+        img = self.resize(img, w=2.5, h=3)
         img = self.to_gray(img)
         img = self.to_binary(img)
-        contours = self.find_contours(img, width=1320)
+        contours = self.find_contours(img, width=1320, err=0.5)
+        print(len(contours))
         item_list = self.analyze_contours(contours, img)
         schedules = self.detect_date(item_list)
         for sched in schedules:
